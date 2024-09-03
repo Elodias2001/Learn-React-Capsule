@@ -1,0 +1,59 @@
+import { useState } from "react";
+import { Input } from "./components/forms/Input"
+import { Checkbox } from "./components/forms/Checkbox"
+import { useEffect } from "react";
+
+function App() {
+  const [showInput, setShowInput] = useState(true) 
+
+  return <div className="container my-5">
+    <Checkbox 
+      id="stocked" 
+      label="N'affichez Les champs que quand c'est coché" 
+      checked={showInput} 
+      onChange={setShowInput}
+    />
+
+   {showInput && <EditTitle />}
+   <div style={{height:'300vh'}}></div>
+  </div>
+  
+}
+
+function EditTitle(){
+  const [title, setTitle] = useState('')
+  const [firstname, setFirstname] = useState('')
+  const [Y, setY] = useState(0)
+
+  useEffect(()=> {
+    const originTitle = document.title
+    return () => {
+      document.title = originTitle
+    }
+  },[])
+
+  useEffect(()=> {
+    document.title = title
+  },[title])
+
+  useEffect(()=>{
+    const handler = () =>{
+      console.log('scroll')
+      setY(window.scrollY)
+    }
+    window.addEventListener('scroll',handler)
+    return () => {
+      window.removeEventListener('scroll',handler)
+    }
+  })
+
+  return <div className="vstack gap-2">
+    <div>
+      Scroll Position Y : {Y}
+    </div>
+    <Input placeholder="Modifier le titre" value={title} onChange={setTitle}/>
+    <Input placeholder="Prénom" value={firstname} onChange={setFirstname}/>
+  </div>
+}
+
+export default App

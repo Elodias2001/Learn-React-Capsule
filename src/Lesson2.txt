@@ -1,0 +1,54 @@
+import { Fragment } from "react";
+
+// const title = "Bonjour la terre";
+const todos = [
+  "Présenter React",
+  "Présenter le JSX",
+  "Créer les composants"
+]
+
+function App() {
+  return  <Fragment>
+      <Title format="italic" color="blue" id="titleId" className="titleClass" data-demo="demo">Le Titre de Mon Composant</Title>
+      <input type="text" />
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet nostrum eaque maxime quam deleniti rerum nesciunt quidem dolores fuga magnam sunt ullam, nobis quae, alias soluta saepe aspernatur, impedit sapiente?</p>
+      <ul>
+        { todos.map(todo => ( <li key={todo}>{todo}</li> ))}
+      </ul>
+    </Fragment>
+}
+
+// eslint-disable-next-line react/prop-types
+function Title({format, color, children, hidden, ...othersProperties}) {
+
+  
+  if(hidden)
+  {
+    return null
+  }else{
+    return <Fragment>
+      <h1 {...othersProperties} style={{fontStyle: format, color: color}}>{ children }</h1>
+    </Fragment>
+  }
+}
+
+export default App
+
+    //...othersProperties me permet de récupérer les autres attributs 
+    //que j'ai passé au composant en haut C'est pratique quand 
+    //je sais que les autres propriétés ou attributs restants n'ont pas 
+    //besoin d'etre remanié pour agir là ou ils sont appelés
+  
+    //<Fragment> Il représente l'élément racine du composant. Cela veut dire qu'il sera imbriqué directement dans la div qui contient l'id root de l'application. Je peux aussi le remplacer par un crochet vide comme balise cela me dispense donc d'importer le Fragment
+  
+    //En react les propriétes css sont des objets et non des chaines de caracteres
+  
+    //Et chaque fonction représente un composant
+  
+    //Le Children me permet de recuperer ce qui est passé entre la balise du composant  <Title>Le Titre de Mon Composant</Title> comme ici par exemple. Je recupere ce qui se trouve entre le composant grace a children
+  
+    //Les attributs utilisés sur le composant peuvent etre récupérer dans la fonction correspondant au composant
+  
+    // Pour recup les elements pssés au composant j'ai le choix de le recuperer au travers de props ici par exemple : function Title(props) ou le destructurer pour récupérer plus vite comme je l'ai fais actuellement
+  
+    //Les composants ont pour tache de retourner une structure HTML, un null, un undefined, un Booleen, un Nombre ou une Chaine de caracteres

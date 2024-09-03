@@ -1,0 +1,28 @@
+import { useCounter } from "./hooks/useCounter"
+import { useToggle } from "./hooks/useToggle"
+
+function App() {
+
+  const [checked, toggleChecked] = useToggle()
+
+  // const [counter, setIncrement, setDecrement] = useCounter(0)
+  const {count, increment, decrement} = useCounter({
+    base : 0,
+    max: 10,
+    min: 0
+  })  // Cette méthode permet de récuperer les valeurs qu'on veut. Je peux donc avec cette méthode appeler seulement {count, decrement}
+
+  return <div>
+
+     <p>Compteur : {count}</p>
+     <button onClick={increment}>Incrémenter</button>
+     <button onClick={decrement}>Décrémenter</button>
+
+    <input type="checkbox" checked={checked} onChange={toggleChecked} />
+    {checked && 'Je suis coché'}
+
+  </div>
+}
+
+
+export default App

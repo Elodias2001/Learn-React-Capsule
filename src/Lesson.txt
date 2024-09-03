@@ -1,0 +1,37 @@
+import { Fragment } from "react";
+
+const title = "Bonjour la terre 2";
+const style = {color: "red",backgroundColor: "yellowgreen"}
+const showTitle = true
+const todos = [
+  "Présenter React",
+  "Présenter le JSX",
+  "Créer les composants"
+]
+const handleClick = (e) =>{
+  console.log(e)
+  alert("J'ai Cliqué !")
+}
+
+function App() {
+  return  <Fragment>
+      <Title format="italic">Le Titre de Mon Composant</Title>
+      <input type="text" />
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet nostrum eaque maxime quam deleniti rerum nesciunt quidem dolores fuga magnam sunt ullam, nobis quae, alias soluta saepe aspernatur, impedit sapiente?</p>
+      <ul>
+        { todos.map(todo => ( <li key={todo}>{todo}</li> ))}
+      </ul>
+    </Fragment>
+}
+
+function Title({format, children}) {
+
+  const titleStyle = { ...style, fontStyle: format === "italic" ? "italic" : "normal" }
+
+  return <Fragment>
+    { showTitle ? <h1 onClick={handleClick} id="title" className="title" style={titleStyle}>{ title }</h1> : <p>demo</p> } 
+  </Fragment>
+  
+}
+
+export default App
