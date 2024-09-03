@@ -1,0 +1,24 @@
+import { createPortal } from "react-dom"
+
+function App() {
+
+
+  return <div className="container vstack gap-4 mt-5">
+
+    <Modal />
+  </div>
+}
+
+function Modal(){
+  return createPortal( <div style={{
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    padding: 10,
+    border: 'solid 1px grey',
+    background: "#FFF"
+  }}>Je suis un modal</div>, document.body )
+}
+
+
+export default App
